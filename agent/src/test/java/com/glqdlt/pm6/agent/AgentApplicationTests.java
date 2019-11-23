@@ -1,6 +1,6 @@
 package com.glqdlt.pm6.agent;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
