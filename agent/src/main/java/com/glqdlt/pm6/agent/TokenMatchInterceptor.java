@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TokenMatchInterceptor implements HandlerInterceptor {
 
-    public static final String SECURITY_HEADER = "xxx-auth";
+    public static final String SECURITY_HEADER = "x-pm6-auth";
     private SecurityTokenMatcher securityTokenMatcher;
 
     public TokenMatchInterceptor(SecurityTokenMatcher securityTokenMatcher) {
