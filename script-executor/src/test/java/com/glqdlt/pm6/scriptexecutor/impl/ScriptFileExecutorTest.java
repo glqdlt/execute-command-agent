@@ -1,5 +1,8 @@
-package com.glqdlt.pm6.scriptexecutor;
+package com.glqdlt.pm6.scriptexecutor.impl;
 
+import com.glqdlt.pm6.scriptexecutor.api.CheckSystemOSName;
+import com.glqdlt.pm6.scriptexecutor.api.ProcessExecutor;
+import com.glqdlt.pm6.scriptexecutor.impl.ScriptFileExecutor;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,14 +12,14 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 
-public class ScriptExecutorTest {
+public class ScriptFileExecutorTest {
     private final CheckSystemOSName checkSystemOSName = () -> System.getProperty("os.name");
     private final boolean checkWindow = checkSystemOSName.isWindow();
 
     @Test
     public void simpleExecuteScript() throws IOException {
         try (final OutputStream outputStream = new ByteArrayOutputStream(1024)) {
-            ScriptExecutor executor = new ScriptExecutor() {
+            ProcessExecutor executor = new ScriptFileExecutor() {
                 @Override
                 public String getScriptPath() {
                     final String scriptName;
