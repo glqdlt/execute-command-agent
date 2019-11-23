@@ -1,5 +1,7 @@
 package com.glqdlt.pm6.agent;
 
+import com.glqdlt.pm6.agent.health.CheckAllHardDrives;
+import com.glqdlt.pm6.agent.health.DiskInfor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,11 +17,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
+import java.util.Collections;
+import java.util.List;
 
 @ActiveProfiles("test")
-@WebMvcTest()
+@WebMvcTest(controllers = {SystemHandleRestController.class})
 @RunWith(SpringRunner.class)
 public class SystemHandleRestControllerTest {
 
@@ -32,6 +34,22 @@ public class SystemHandleRestControllerTest {
     @MockBean
     private SimpleSystemHandler simpleSystemHandler;
 
+    @MockBean
+    private CheckAllHardDrives checkAllHardDrives;
+
+
+    @Test
+    public void getHealth() throws Exception {
+        List<DiskInfor> stub = Collections.singletonList(new DiskInfor("c:/", 1000L, 100L));
+        Mockito.when(checkAllHardDrives.getAlLDriveSpace()).thenReturn(stub);
+        MvcResult res = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/system/health")
+                .header(TokenMatchInterceptor.SECURITY_HEADER, key))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        Assert.assertEquals(200, res.getResponse().getStatus());
+        Assert.assertEquals("[{\"name\":\"c:/\",\"diskSize\":{\"total\":1000,\"free\":100,\"used\":900}}]", res.getResponse().getContentAsString());
+    }
 
     @Test
     public void getShutdown() throws Exception {
