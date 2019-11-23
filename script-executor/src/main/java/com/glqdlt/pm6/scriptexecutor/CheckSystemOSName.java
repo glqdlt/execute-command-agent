@@ -1,4 +1,4 @@
-package com.glqdlt.pm6.executecommandagent;
+package com.glqdlt.pm6.scriptexecutor;
 
 /**
  * Date 2019-11-23

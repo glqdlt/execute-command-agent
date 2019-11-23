@@ -1,4 +1,4 @@
-package com.glqdlt.pm6.executecommandagent;
+package com.glqdlt.pm6.scriptexecutor;
 
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;

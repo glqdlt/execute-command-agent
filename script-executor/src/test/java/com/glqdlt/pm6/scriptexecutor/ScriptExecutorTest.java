@@ -1,5 +1,4 @@
-package com.glqdlt.pm6.executecommandagent;
-
+package com.glqdlt.pm6.scriptexecutor;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
 
-public class ExecutorsTest {
+public class ScriptExecutorTest {
     private final CheckSystemOSName checkSystemOSName = () -> System.getProperty("os.name");
     private final boolean checkWindow = checkSystemOSName.isWindow();
 
