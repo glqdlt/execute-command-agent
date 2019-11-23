@@ -8,15 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class AgentApplication implements CommandLineRunner {
 
-    @Autowired
-    private IamAlive iamAlive;
-
     public static void main(String[] args) {
         SpringApplication.run(AgentApplication.class, args);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        iamAlive.sendEvent();
     }
 }

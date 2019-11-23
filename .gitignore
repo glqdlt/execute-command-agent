@@ -4,3 +4,5 @@ target
 mvnw
 mvnw.cmd
 *.iml
+
+*-prod.properties
